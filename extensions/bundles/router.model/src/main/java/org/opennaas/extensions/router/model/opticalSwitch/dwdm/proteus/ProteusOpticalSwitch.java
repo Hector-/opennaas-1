@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.opennaas.extensions.router.model.LogicalDevice;
 import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard;
 import org.opennaas.extensions.router.model.opticalSwitch.FiberConnection;
 
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ProteusOpticalSwitch extends org.opennaas.extensions.router.model.System {
 
