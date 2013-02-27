@@ -2,11 +2,15 @@ package org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.NetworkPort;
 import org.opennaas.extensions.router.model.opticalSwitch.DWDMChannel;
 import org.opennaas.extensions.router.model.opticalSwitch.FiberChannel;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WonesysDropCard extends ProteusOpticalSwitchCard {
 
 	/**

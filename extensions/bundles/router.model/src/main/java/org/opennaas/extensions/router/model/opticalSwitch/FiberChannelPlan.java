@@ -3,6 +3,9 @@ package org.opennaas.extensions.router.model.opticalSwitch;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  * MANUALLY ADDED TO CIM (14/04/2011)<br>
  * 
@@ -11,6 +14,7 @@ import java.util.List;
  * @author isart
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FiberChannelPlan {
 
 	private int	firstChannel	= 0;

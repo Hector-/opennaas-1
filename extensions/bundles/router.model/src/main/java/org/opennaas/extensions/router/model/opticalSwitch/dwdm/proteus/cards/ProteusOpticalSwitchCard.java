@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.LogicalModule;
 import org.opennaas.extensions.router.model.LogicalPort;
@@ -24,6 +27,7 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort;
  * @author isart
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalSwitchCard {
 
 	// ModulePort Association represents ports physically present on this card (i.e: FCPort where a fiber is connected)

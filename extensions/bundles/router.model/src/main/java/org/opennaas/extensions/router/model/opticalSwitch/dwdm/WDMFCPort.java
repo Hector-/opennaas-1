@@ -1,8 +1,12 @@
 package org.opennaas.extensions.router.model.opticalSwitch.dwdm;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.opticalSwitch.DWDMChannel;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WDMFCPort extends FCPort {
 
 	/**
