@@ -9,6 +9,10 @@ import java.util.*;
 import java.io.*;
 import java.lang.Exception;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard;
+
 /**
  * This Class contains accessor and mutator methods for all properties defined in the CIM class LogicalModule as well as methods comparable to the
  * invokeMethods defined for this class. This Class implements the LogicalModuleBean Interface. The CIM class LogicalModule is described as follows:

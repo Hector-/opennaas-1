@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  * MANUALLY ADDED TO CIM (14/04/2011)<br>
@@ -14,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
  * @author isart
  * 
  */
+@XmlSeeAlso({ WDMChannelPlan.class })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FiberChannelPlan {
 
