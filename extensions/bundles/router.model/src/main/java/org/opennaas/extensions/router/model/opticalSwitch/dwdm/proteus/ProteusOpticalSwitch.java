@@ -1,5 +1,6 @@
 package org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +8,16 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.opennaas.core.resources.IModel;
+import org.opennaas.core.resources.ObjectSerializer;
+import org.opennaas.core.resources.SerializationException;
 import org.opennaas.extensions.router.model.LogicalDevice;
-import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard;
 import org.opennaas.extensions.router.model.opticalSwitch.FiberConnection;
+import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ProteusOpticalSwitch extends org.opennaas.extensions.router.model.System {
+public class ProteusOpticalSwitch extends org.opennaas.extensions.router.model.System implements IModel, Serializable{
 
 	/**
 	 * 
@@ -48,5 +52,9 @@ public class ProteusOpticalSwitch extends org.opennaas.extensions.router.model.S
 		}
 		return null;
 	}
-
+	
+	@Override
+	public String toXml() throws SerializationException {		
+		return ObjectSerializer.toXml(this);		
+	}
 }
