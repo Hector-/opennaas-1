@@ -19,7 +19,9 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * ServiceAccessPoint.
  */
 @XmlSeeAlso({
-		ServiceAccessPoint.class
+		ServiceAccessPoint.class,
+		LogicalDevice.class,
+		System.class
 })
 public class EnabledLogicalElement extends LogicalElement implements
 		Serializable {

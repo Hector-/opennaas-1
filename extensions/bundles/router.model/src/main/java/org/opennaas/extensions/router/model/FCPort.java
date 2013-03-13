@@ -7,6 +7,8 @@ package org.opennaas.extensions.router.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 import org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort;
@@ -17,6 +19,7 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort;
  * 
  * Capabilities and management of a Fibre Channel Port Device.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({ WDMFCPort.class })
 public class FCPort extends NetworkPort implements Serializable {
 

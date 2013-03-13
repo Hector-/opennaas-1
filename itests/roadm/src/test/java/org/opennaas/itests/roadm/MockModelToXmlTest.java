@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
 import junit.framework.Assert;
 
@@ -41,31 +43,21 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
-@Ignore
+//@Ignore
 @RunWith(JUnit4TestRunner.class)
 public class MockModelToXmlTest {	
-
-	/**
-	 * @uml.property  name="centralRM"
-	 * @uml.associationEnd  readOnly="true"
-	 */
+	
 	@Inject
 	private IResourceManager centralRM;
 	// Sin la I peta
 	
-	/**
-	 * @uml.property  name="centralPM"
-	 * @uml.associationEnd  readOnly="true"
-	 */
 	@Inject
 	private IProtocolManager centralPM;
 	// Sin la I peta
 	
-	/**
-	 * @uml.property  name="roadm"
-	 * @uml.associationEnd  
-	 */
-	private IResource roadm;
+	private IModel model;
+	
+	private JAXBContext	jc;
 	
 	@Configuration
 	public static Option[] configuration() {
@@ -77,8 +69,105 @@ public class MockModelToXmlTest {
 				openDebugSocket());
 	}
 	
+	/*@Before
+	public void initJaxbContext() throws JAXBException {
+		jc = JAXBContext.newInstance(				
+				org.opennaas.extensions.router.model.Association.class,
+				org.opennaas.extensions.router.model.BGPRouteMapsInRoutingPolicy.class,				
+				org.opennaas.extensions.router.model.Component.class,
+				org.opennaas.extensions.router.model.ComputerSystem.class,
+				org.opennaas.extensions.router.model.Dependency.class,
+				org.opennaas.extensions.router.model.DeviceConnection.class,	
+				org.opennaas.extensions.router.model.opticalSwitch.DWDMChannel.class,
+				org.opennaas.extensions.router.model.EnabledLogicalElement.class,	
+				org.opennaas.extensions.router.model.EndpointInArea.class,
+				org.opennaas.extensions.router.model.EntriesInFilterList.class,
+				org.opennaas.extensions.router.model.FCPort.class,				
+				org.opennaas.extensions.router.model.opticalSwitch.FiberChannel.class,
+				org.opennaas.extensions.router.model.opticalSwitch.FiberChannelPlan.class,
+				org.opennaas.extensions.router.model.opticalSwitch.FiberConnection.class,
+				org.opennaas.extensions.router.model.LogicalDevice.class,
+				org.opennaas.extensions.router.model.LogicalElement.class,
+				org.opennaas.extensions.router.model.LogicalModule.class,
+				org.opennaas.extensions.router.model.LogicalPort.class,				
+				org.opennaas.extensions.router.model.ManagedElement.class,
+				org.opennaas.extensions.router.model.ManagedSystemElement.class,
+				org.opennaas.extensions.router.model.ModulePort.class,
+				org.opennaas.extensions.router.model.NetworkPort.class,
+				org.opennaas.extensions.router.model.PolicyComponent.class,
+				org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.ProteusOpticalSwitch.class,	
+				org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard.class,
+				org.opennaas.extensions.router.model.SystemComponent.class,
+				org.opennaas.extensions.router.model.SystemDevice.class,
+				org.opennaas.extensions.router.model.System.class,
+				org.opennaas.extensions.router.model.opticalSwitch.WDMChannelPlan.class,
+				org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort.class,
+				org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.WonesysDropCard.class,
+				org.opennaas.extensions.router.model.AdminDomain.class,
+				org.opennaas.extensions.router.model.AreaOfConfiguration.class,
+				org.opennaas.extensions.router.model.Association.class,
+				org.opennaas.extensions.router.model.BindsTo.class,
+				org.opennaas.extensions.router.model.Component.class,
+				org.opennaas.extensions.router.model.ComputerSystem.class,
+				org.opennaas.extensions.router.model.Dependency.class,
+				org.opennaas.extensions.router.model.DeviceConnection.class,
+				org.opennaas.extensions.router.model.DeviceSAPImplementation.class,
+				org.opennaas.extensions.router.model.EnabledLogicalElement.class,
+				org.opennaas.extensions.router.model.EndpointInArea.class,
+				org.opennaas.extensions.router.model.EthernetPort.class,
+				org.opennaas.extensions.router.model.FCPort.class,
+				org.opennaas.extensions.router.model.FilterEntryBase.class,
+				org.opennaas.extensions.router.model.GREService.class,
+				org.opennaas.extensions.router.model.GRETunnelConfiguration.class,
+				org.opennaas.extensions.router.model.GRETunnelEndpoint.class,
+				org.opennaas.extensions.router.model.GRETunnelServiceConfiguration.class,
+				org.opennaas.extensions.router.model.GRETunnelService.class,
+				org.opennaas.extensions.router.model.HostedDependency.class,
+				org.opennaas.extensions.router.model.HostedRoute.class,
+				org.opennaas.extensions.router.model.HostedRoutingServices.class,
+				org.opennaas.extensions.router.model.HostedService.class,
+				org.opennaas.extensions.router.model.IPHeadersFilter.class,
+				org.opennaas.extensions.router.model.IPProtocolEndpoint.class,
+				org.opennaas.extensions.router.model.LogicalDevice.class,
+				org.opennaas.extensions.router.model.LogicalElement.class,
+				org.opennaas.extensions.router.model.LogicalModule.class,
+				org.opennaas.extensions.router.model.LogicalPort.class,
+				org.opennaas.extensions.router.model.LogicalTunnelPort.class,
+				org.opennaas.extensions.router.model.ManagedElement.class,
+				org.opennaas.extensions.router.model.ManagedSystemElement.class,
+				org.opennaas.extensions.router.model.ModulePort.class,
+				org.opennaas.extensions.router.model.NetworkPort.class,
+				org.opennaas.extensions.router.model.NetworkService.class,
+				org.opennaas.extensions.router.model.NextHopIPRoute.class,
+				org.opennaas.extensions.router.model.NextHopRoute.class,
+				org.opennaas.extensions.router.model.OSPFAreaConfiguration.class,
+				org.opennaas.extensions.router.model.OSPFArea.class,
+				org.opennaas.extensions.router.model.OSPFProtocolEndpointBase.class,
+				org.opennaas.extensions.router.model.OSPFProtocolEndpoint.class,
+				org.opennaas.extensions.router.model.OSPFServiceConfiguration.class,
+				org.opennaas.extensions.router.model.OSPFService.class,
+				org.opennaas.extensions.router.model.PortImplementsEndpoint.class,
+				org.opennaas.extensions.router.model.PortOnDevice.class,
+				org.opennaas.extensions.router.model.ProtocolEndpoint.class,
+				org.opennaas.extensions.router.model.ProvidesEndpoint.class,
+				org.opennaas.extensions.router.model.RouteCalculationService.class,
+				org.opennaas.extensions.router.model.RouteUsesEndpoint.class,
+				org.opennaas.extensions.router.model.RoutingProtocolDomain.class,
+				org.opennaas.extensions.router.model.SAPSAPDependency.class,
+				org.opennaas.extensions.router.model.ServiceAccessBySAP.class,
+				org.opennaas.extensions.router.model.ServiceAccessPoint.class,
+				org.opennaas.extensions.router.model.Service.class,
+				org.opennaas.extensions.router.model.SystemComponent.class,
+				org.opennaas.extensions.router.model.SystemDevice.class,
+				org.opennaas.extensions.router.model.System.class,
+				org.opennaas.extensions.router.model.VLANEndpoint.class);
+	}*/
+	
 	@Before
 	public void initializeResource() throws Exception {	
+		
+		IResource roadm;
+		
 		//crear el recurs
 		//ResourceDescriptor descriptor = generateROADMDescriptor();
 		ResourceDescriptor descriptor = ResourceHelper.newResourceDescriptorProteus("roadm");		
@@ -97,24 +186,41 @@ public class MockModelToXmlTest {
 		
 		//arrencar el recurs
 		//això inicialitza el seu model utilitzant el context anterior
-		centralRM.startResource(roadm.getResourceIdentifier());				
+		centralRM.startResource(roadm.getResourceIdentifier());		
+		
+		model = roadm.getModel();
 	}
 	
 	@Test
-	public void ToXmlTest() throws Exception {									
-				
-		IModel model = roadm.getModel();							
+	public void ToXmlTest() throws Exception {	
 		
+		Assert.assertNotNull(model);
+		
+		try {
 		String xml = model.toXml();
+		saveToFile(xml, "/home/sito/OutputXml1.txt");
+		IModel loadedModel = (IModel) ObjectSerializer.fromXml(xml, ProteusOpticalSwitch.class);					
+		String loadedXml = loadedModel.toXml();
+		saveToFile(loadedXml, "/home/sito/OutputXml2.txt");
+		Assert.assertEquals(xml, loadedXml);
 		
-		/** 
-		 * 
-		 * Save Xml model on a file
-		 * 
-		 **/
+		//compareModels((ProteusOpticalSwitch) model, (ProteusOpticalSwitch)loadedModel);
+		} catch (Exception e){
+			throw e;
+		}
+					
+	}	
+	
+	/** 
+	 * 
+	 * Save Xml model on a file
+	 * 
+	 **/
+	private void saveToFile(String xml, String path) {
+	
 		BufferedWriter out;
         try {            
-            out = new BufferedWriter(new FileWriter("/home/sito/OutputXml.txt"));            
+            out = new BufferedWriter(new FileWriter(path));            
             
             // Append new content
 	        //out = new BufferedWriter(new FileWriter("helloworld.txt", true))
@@ -133,16 +239,7 @@ public class MockModelToXmlTest {
         }catch(IOException e){
             System.out.println("There was a problem:" + e);
 	    }		
-		
-		IModel loadedModel = (IModel) ObjectSerializer.fromXml(xml, ProteusOpticalSwitch.class);					
-		
-		String loadedXml = loadedModel.toXml();
-		
-		Assert.assertEquals(xml, loadedXml);
-				
-		//compareModels((ProteusOpticalSwitch) model, (ProteusOpticalSwitch)loadedModel); 		
-					
-	}	
+	}
 	
 	private void compareModels(ProteusOpticalSwitch original, ProteusOpticalSwitch loaded){
 		assertEquals(original.getName(), loaded.getName());

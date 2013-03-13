@@ -9,6 +9,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.Exception;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.ProteusOpticalSwitchCard;
@@ -20,6 +21,8 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.Pro
  * LogicalModule is the logical device that corresponds to a component part (such as a card or blade) in a device. For example, a line card in a
  * switch is an instance of LogicalModule, that is associated with the the switch itself. A logical module is not necessarily independently managed.
  */
+@XmlRootElement
+@XmlSeeAlso({ ProteusOpticalSwitchCard.class })
 public class LogicalModule extends LogicalDevice implements Serializable {
 
 	/**

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.LogicalModule;
@@ -28,6 +30,7 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({ WonesysDropCard.class })
 public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalSwitchCard {
 
 	// ModulePort Association represents ports physically present on this card (i.e: FCPort where a fiber is connected)
@@ -58,6 +61,7 @@ public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalS
 
 	private boolean									allowsProtection	= false;
 
+	@XmlTransient
 	private HashMap<NetworkPort, List<NetworkPort>>	internalConnections	= new HashMap<NetworkPort, List<NetworkPort>>();
 
 	// private boolean drop = false;

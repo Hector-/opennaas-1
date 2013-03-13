@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -23,6 +25,7 @@ import org.opennaas.core.resources.SerializationException;
  * ManagedElement is an abstract class that provides a common superclass (or top of the inheritance tree) for the non-association classes in the CIM
  * Schema.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ManagedElement implements IModel, Serializable {
 
 	private static final long	serialVersionUID	= 3787493356525574746L;
@@ -240,6 +243,7 @@ public class ManagedElement implements IModel, Serializable {
 	/**
 	 * These are the associations where I am the "to" element
 	 */
+	@XmlTransient
 	protected List<Association>	fromAssociations	= new LinkedList<Association>();
 
 	/**
@@ -418,11 +422,13 @@ public class ManagedElement implements IModel, Serializable {
 	 * CIM Schema.
 	 */
 	protected ManagedElement() {
+		setInstanceID(generateInstanceID());
 	};
 
 	/**
 	 * The following constants are defined for use with the ValueMap/Values qualified property instanceID.
 	 */
+	@XmlID
 	private String	instanceID;
 
 	/**
@@ -444,11 +450,9 @@ public class ManagedElement implements IModel, Serializable {
 	 * @return String current instanceID property value
 	 * @exception Exception
 	 */
-	@XmlID
+	
 	public String getInstanceID() {
-		if (this.instanceID == null)
-			this.instanceID = generateInstanceID();
-
+		
 		return this.instanceID;
 	} // getInstanceID
 
@@ -473,7 +477,7 @@ public class ManagedElement implements IModel, Serializable {
 	 * @exception Exception
 	 */
 	public void setInstanceID(String instanceID) {
-
+		
 		this.instanceID = instanceID;
 	} // setInstanceID
 

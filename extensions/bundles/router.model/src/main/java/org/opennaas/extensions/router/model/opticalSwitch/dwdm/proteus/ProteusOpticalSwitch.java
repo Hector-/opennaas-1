@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.opennaas.core.resources.IModel;
 import org.opennaas.core.resources.ObjectSerializer;
@@ -23,6 +24,8 @@ public class ProteusOpticalSwitch extends org.opennaas.extensions.router.model.S
 	 * 
 	 */
 	private static final long	serialVersionUID	= 6737244447225380204L;
+	
+	@XmlTransient
 	private List<FiberConnection>	fiberConnections	= new ArrayList<FiberConnection>();
 
 	public List<FiberConnection> getFiberConnections() {

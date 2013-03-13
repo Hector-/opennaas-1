@@ -97,10 +97,13 @@ public class ModelToXmlTest {
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		StringWriter writer = new StringWriter();
 		marshaller.marshal(original, writer);
+		
+		String xml = writer.toString();
+		System.out.println(xml);
 
 		// Load from XML
 		Unmarshaller unmarshaller = jc.createUnmarshaller();
-		StringReader reader = new StringReader(writer.toString());
+		StringReader reader = new StringReader(xml);
 		ComputerSystem loaded =
 				(ComputerSystem) unmarshaller.unmarshal(reader);
 
