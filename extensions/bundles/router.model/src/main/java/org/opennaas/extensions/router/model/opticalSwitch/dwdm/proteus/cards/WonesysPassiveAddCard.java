@@ -2,6 +2,9 @@ package org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.NetworkPort;
 import org.opennaas.extensions.router.model.opticalSwitch.FiberChannel;
@@ -13,6 +16,7 @@ import org.opennaas.extensions.router.model.opticalSwitch.FiberChannel;
  * @author isart
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WonesysPassiveAddCard extends ProteusOpticalSwitchCard {
 
 	/**
@@ -28,6 +32,8 @@ public class WonesysPassiveAddCard extends ProteusOpticalSwitchCard {
 	 */
 	private FCPort	commonPort;
 
+	public WonesysPassiveAddCard(){}
+	
 	public WonesysPassiveAddCard(int chasis, int slot, int type, int subtype) {
 		super(chasis, slot, type, subtype);
 	}

@@ -477,7 +477,7 @@ public class ManagedElement implements IModel, Serializable {
 	 * @exception Exception
 	 */
 	public void setInstanceID(String instanceID) {
-		
+
 		this.instanceID = instanceID;
 	} // setInstanceID
 

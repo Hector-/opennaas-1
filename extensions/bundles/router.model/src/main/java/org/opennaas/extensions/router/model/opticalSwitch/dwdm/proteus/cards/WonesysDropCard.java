@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.opennaas.extensions.router.model.FCPort;
 import org.opennaas.extensions.router.model.NetworkPort;
@@ -21,12 +20,10 @@ public class WonesysDropCard extends ProteusOpticalSwitchCard {
 	/**
 	 * Used in order to interlink several modules in a single rack. It is often used to link with a passive add card.
 	 */
-	@XmlTransient
 	private FCPort	expressPort;
 	/**
 	 * Is the input of the multiplexed signal coming from the network. The only input port of this card.
 	 */	
-	@XmlTransient
 	private FCPort	commonPort;
 
 	public WonesysDropCard(){}

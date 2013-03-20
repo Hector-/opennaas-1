@@ -30,7 +30,10 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.WDMFCPort;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlSeeAlso({ WonesysDropCard.class })
+@XmlSeeAlso({ 
+		WonesysDropCard.class,
+		WonesysPassiveAddCard.class
+})
 public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalSwitchCard {
 
 	// ModulePort Association represents ports physically present on this card (i.e: FCPort where a fiber is connected)
@@ -60,7 +63,7 @@ public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalS
 	// private List<NetworkPort> internalPorts = new ArrayList<NetworkPort>();
 
 	private boolean									allowsProtection	= false;
-
+	
 	@XmlTransient
 	private HashMap<NetworkPort, List<NetworkPort>>	internalConnections	= new HashMap<NetworkPort, List<NetworkPort>>();
 
@@ -267,6 +270,9 @@ public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalS
 		return subPort;
 	}
 
+	/**
+	 * Functions used with the HashMap
+	 */ 
 	public boolean isInternallyConnected(NetworkPort srcPort, NetworkPort dstPort) {
 		if (internalConnections.get(srcPort) == null)
 			return false;
@@ -283,8 +289,8 @@ public class ProteusOpticalSwitchCard extends LogicalModule implements IOpticalS
 			return new ArrayList<NetworkPort>();
 
 		return internalConnections.get(srcPort);
-	}
-
+	}	
+	
 	@Override
 	public boolean isPassive() {
 		return false;
