@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
@@ -18,7 +19,10 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({ WDMChannelPlan.class })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FiberChannelPlan {
-
+		
+	@XmlID
+	private String	instanceID;	
+	
 	private int	firstChannel	= 0;
 	private int	lastChannel		= 0;
 	private int	channelGap		= 1;
@@ -30,7 +34,19 @@ public class FiberChannelPlan {
 	}
 
 	protected ChannelType	channelType;
+	
+	protected FiberChannelPlan() {
+		setInstanceID(generateInstanceID());
+	};
 
+	public String getInstanceID() {
+		return instanceID;
+	}
+	
+	public void setInstanceID(String instanceID ) {
+		this.instanceID = instanceID;
+	}
+	
 	public int getFirstChannel() {
 		return firstChannel;
 	}
@@ -84,5 +100,11 @@ public class FiberChannelPlan {
 		}
 		return allChannels;
 	}
+	
+	protected String generateInstanceID() {
+		String orgID = "opennaas.org"; 
+		String localID = this.getClass().getName() + "/" + this.toString();
 
+		return orgID + ":" + localID;
+	}
 }
