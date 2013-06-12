@@ -20,42 +20,45 @@ import org.opennaas.core.resources.capability.ICapability;
 
 @Path("/")
 public interface IXConnectCapability extends ICapability {
-
+	
 	/**
 	 * Creates a XConnection in the ROADM
 	 * 
 	 * @param xconnect
+	 * @return the XConnection's id
 	 * @throws CapabilityException
 	 */
 	@Path("/makeXConnection")
 	@POST
 	@Produces(MediaType.APPLICATION_XML)
-	public void makeXConnection(XConnection xconnect) throws CapabilityException;
+	public String makeXConnection(XConnection xconnect) throws CapabilityException;
 
 	/**
 	 * Deletes a XConnection in the ROADM
 	 * 
-	 * @param id
+	 * @param the id of the desired XConnection to delete
 	 * @throws CapabilityException
 	 */
 	@Path("/removeXConnection/{id}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_XML)
-	public void removeXConnection(@PathParam("id") String id) throws CapabilityException;
+	public void removeXConnection(@PathParam("id") String id) throws CapabilityException;	
 	
 	/**
-	 * Returns all XConncetion in the ROADM
+	 * Returns all XConnection in the ROADM
 	 * 
+	 * @return the list of XConnection's ids in the ROADM
 	 * @throws CapabilityException
 	 */
 	@Path("/getXConnections")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public List<String> listXConnections() throws CapabilityException;
-
+	
 	/**
 	 * Returns all available EndPoints in the ROADM
 	 * 
+	 * @return the list of EndPoint's ids
 	 * @throws CapabilityException
 	 */
 	@Path("/getEndPoints")
@@ -66,7 +69,8 @@ public interface IXConnectCapability extends ICapability {
 	/**
 	 * Returns all available Labels from an EndPoint in the ROADM
 	 * 
-	 * @param id
+	 * @param the id of the desired EndPoint
+	 * @return the list of Labels' ids from the chosen EndPoint
 	 * @throws CapabilityException
 	 */
 	@Path("/getLabels/{id}")
@@ -75,11 +79,12 @@ public interface IXConnectCapability extends ICapability {
 	public List<String> listLabels(@PathParam("id") String id) throws CapabilityException;
 	
 	/**
-	 * Returns a specific XConnetion
+	 * Returns a specific XConnection
 	 * 
-	 * @param id
+	 * @param the id of the desired XConnection
+	 * @return XConnection
 	 * @throws CapabilityException
-	 */
+	 */	
 	@Path("/getXConnection/{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
