@@ -177,6 +177,7 @@
 
 		<bundle>mvn:org.opennaas/org.opennaas.extensions.roadm.capability.connections/${project.version}</bundle>
 		<bundle>mvn:org.opennaas/org.opennaas.extensions.roadm.capability.monitoring/${project.version}</bundle>
+		<bundle>mvn:org.opennaas/org.opennaas.extensions.roadm.capability.xconnect/${project.version}</bundle>
 		<bundle>mvn:org.opennaas/org.opennaas.extensions.roadm.repository/${project.version}</bundle>
 	</feature>
 
