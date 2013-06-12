@@ -12,28 +12,76 @@ import javax.ws.rs.core.MediaType;
 
 import org.opennaas.core.resources.capability.CapabilityException;
 import org.opennaas.core.resources.capability.ICapability;
-import org.opennaas.extensions.router.model.opticalSwitch.FiberConnection;
+
+/**
+ * @author Héctor Fernández
+ * @email  hbfernandezr@gmail.com
+ */
 
 @Path("/")
 public interface IXConnectCapability extends ICapability {
 
+	/**
+	 * Creates a XConnection in the ROADM
+	 * 
+	 * @param xconnect
+	 * @throws CapabilityException
+	 */
 	@Path("/makeXConnection")
 	@POST
 	@Produces(MediaType.APPLICATION_XML)
 	public void makeXConnection(XConnection xconnect) throws CapabilityException;
 
+	/**
+	 * Deletes a XConnection in the ROADM
+	 * 
+	 * @param id
+	 * @throws CapabilityException
+	 */
 	@Path("/removeXConnection/{id}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_XML)
 	public void removeXConnection(@PathParam("id") String id) throws CapabilityException;
 	
-	@Path("/fiberConnections")
+	/**
+	 * Returns all XConncetion in the ROADM
+	 * 
+	 * @throws CapabilityException
+	 */
+	@Path("/getXConnections")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public List<String> listXConnections() throws CapabilityException;
 
-	@Path("/fiberConnection/{id}")
+	/**
+	 * Returns all available EndPoints in the ROADM
+	 * 
+	 * @throws CapabilityException
+	 */
+	@Path("/getEndPoints")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public FiberConnection getXConnection(@PathParam("id") String id) throws CapabilityException;	
+	public List<String> listEndPoints() throws CapabilityException;
+	
+	/**
+	 * Returns all available Labels from an EndPoint in the ROADM
+	 * 
+	 * @param id
+	 * @throws CapabilityException
+	 */
+	@Path("/getLabels/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public List<String> listLabels(@PathParam("id") String id) throws CapabilityException;
+	
+	/**
+	 * Returns a specific XConnetion
+	 * 
+	 * @param id
+	 * @throws CapabilityException
+	 */
+	@Path("/getXConnection/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public XConnection getXConnection(@PathParam("id") String id) throws CapabilityException;		
 }
