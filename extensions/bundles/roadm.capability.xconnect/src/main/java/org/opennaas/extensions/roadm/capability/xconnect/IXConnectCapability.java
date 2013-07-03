@@ -1,7 +1,5 @@
 package org.opennaas.extensions.roadm.capability.xconnect;
 
-import java.util.List;
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,7 +26,7 @@ public interface IXConnectCapability extends ICapability {
 	 * @return the XConnection's id
 	 * @throws CapabilityException
 	 */
-	@Path("/makeXConnection")
+	@Path("/")
 	@POST
 	@Produces(MediaType.APPLICATION_XML)
 	public String makeXConnection(XConnection xconnect) throws CapabilityException;
@@ -39,9 +37,8 @@ public interface IXConnectCapability extends ICapability {
 	 * @param the id of the desired XConnection to delete
 	 * @throws CapabilityException
 	 */
-	@Path("/removeXConnection/{id}")
+	@Path("/{id}")
 	@DELETE
-	@Produces(MediaType.APPLICATION_XML)
 	public void removeXConnection(@PathParam("id") String id) throws CapabilityException;	
 	
 	/**
@@ -49,11 +46,12 @@ public interface IXConnectCapability extends ICapability {
 	 * 
 	 * @return the list of XConnection's ids in the ROADM
 	 * @throws CapabilityException
+	 * @throws ParserConfigurationException 
 	 */
-	@Path("/getXConnections")
+	@Path("/")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public List<String> listXConnections() throws CapabilityException;
+	public Wrapper listXConnections() throws CapabilityException;
 	
 	/**
 	 * Returns all available EndPoints in the ROADM
@@ -64,7 +62,7 @@ public interface IXConnectCapability extends ICapability {
 	@Path("/getEndPoints")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public List<String> listEndPoints() throws CapabilityException;
+	public Wrapper getEndPoints() throws CapabilityException;
 	
 	/**
 	 * Returns all available Labels from an EndPoint in the ROADM
@@ -73,10 +71,10 @@ public interface IXConnectCapability extends ICapability {
 	 * @return the list of Labels' ids from the chosen EndPoint
 	 * @throws CapabilityException
 	 */
-	@Path("/getLabels/{id}")
+	@Path("/getLabels/{endPointID}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public List<String> listLabels(@PathParam("id") String id) throws CapabilityException;
+	public Wrapper getLabels(@PathParam("endPointID") String endPointID) throws CapabilityException;
 	
 	/**
 	 * Returns a specific XConnection
@@ -85,7 +83,7 @@ public interface IXConnectCapability extends ICapability {
 	 * @return XConnection
 	 * @throws CapabilityException
 	 */	
-	@Path("/getXConnection/{id}")
+	@Path("/{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public XConnection getXConnection(@PathParam("id") String id) throws CapabilityException;		

@@ -38,6 +38,10 @@
 			<groupId>org.opennaas</groupId>
 			<artifactId>org.opennaas.extensions.roadm.capability.monitoring</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.opennaas</groupId>
+			<artifactId>org.opennaas.extensions.roadm.capability.xconnect</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

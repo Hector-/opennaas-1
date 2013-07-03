@@ -32,4 +32,14 @@
 			<entry key="actionset.version" value="1.0"/>
 		</service-properties>
 	</service>
+	<bean id="xconnectActionSet" class="org.opennaas.extensions.roadm.wonesys.actionsets.XConnectActionSet"/>
+	<!-- Register an Junos action factory as an OSGi Service -->
+	<service ref="xconnectActionSet" interface="org.opennaas.core.resources.action.IActionSet">
+		<service-properties>
+			<entry key="actionset.name" value="proteus"/>
+			<!--  queue have to be changed -->
+			<entry key="actionset.capability" value="xconnect"/>
+			<entry key="actionset.version" value="1.0"/>
+		</service-properties>
+	</service>
 </blueprint>

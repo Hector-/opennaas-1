@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <resourceDescriptor>
+		
 	<capabilityDescriptors>
-
 		<information>
 			<!-- optional info -->
 			<description>Connections capability for roadm</description>
@@ -15,7 +15,7 @@
 		<capabilityProperty value="1.0" name="actionset.version" />
 	</capabilityDescriptors>
 
-	   <capabilityDescriptors>
+	<capabilityDescriptors>
 		<information>
 			<!-- optional info -->
 			<description>Monitoring capability for roadm</description>
@@ -27,11 +27,23 @@
 		<!-- actionSet information-->
 		<capabilityProperty value="proteus" name="actionset.name"/>
 		<capabilityProperty value="1.0" name="actionset.version" />
+	</capabilityDescriptors>
+	    
+	<capabilityDescriptors>
+		<information>
+			<!-- optional info -->
+			<description>XConnect capability for roadm</description>
+			<name>XConnect capability</name>
+			<version>1.0</version>
+			<!-- identifier type -->
+			<type>xconnect</type>
+		</information>
+		<!-- actionSet information -->
+		<capabilityProperty value="proteus" name="actionset.name"/>
+		<capabilityProperty value="1.0" name="actionset.version" />
+	</capabilityDescriptors>
 
-
-	    </capabilityDescriptors>
-
-	   <capabilityDescriptors>
+	<capabilityDescriptors>
 		<information>
 			<!-- optional info -->
 			<description>Queue capability</description>
@@ -43,7 +55,7 @@
 		<!-- actionSet information -->
 		<capabilityProperty value="proteus" name="actionset.name"/>
 		<capabilityProperty value="1.0" name="actionset.version" />
-	    </capabilityDescriptors>
+	</capabilityDescriptors>
 
 	<!-- Resource information to define type and name -->
 	<information>
@@ -52,5 +64,6 @@
 		<type>roadm</type>
 		<version>1.0.0</version>
 	</information>
+	
 	<properties/>
 </resourceDescriptor>

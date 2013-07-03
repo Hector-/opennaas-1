@@ -26,7 +26,7 @@ public class Activator extends AbstractActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		Activator.context = context;
+		this.context = context;
 	}
 
 	@Override
@@ -50,16 +50,16 @@ public class Activator extends AbstractActivator implements BundleActivator {
 		return createServiceFilter(IQueueManagerCapability.class.getName(), properties);
 	}
 	
-	public static IActionSet getConnectionsActionSetService(String name, String version) throws ActivatorException {
+	public static IActionSet getXConnectActionSetService(String name, String version) throws ActivatorException {
 		try {
-			log.debug("Calling ConnectionsActionSetService");
-			return (IActionSet) getServiceFromRegistry(context, createFilterConnectionsActionSet(name, version));
+			log.debug("Calling XConnectActionSetService");
+			return (IActionSet) getServiceFromRegistry(context, createFilterXConnectActionSet(name, version));
 		} catch (InvalidSyntaxException e) {
 			throw new ActivatorException(e);
 		}
 	}
 	
-	private static Filter createFilterConnectionsActionSet(String name, String version) throws InvalidSyntaxException {
+	private static Filter createFilterXConnectActionSet(String name, String version) throws InvalidSyntaxException {
 		Properties properties = new Properties();
 		properties.setProperty(ResourceDescriptorConstants.ACTION_CAPABILITY, "xconnect");
 		properties.setProperty(ResourceDescriptorConstants.ACTION_NAME, name);

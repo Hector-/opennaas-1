@@ -13,6 +13,7 @@
 	<reference id="queueCapabilityFactory" interface="org.opennaas.core.resources.capability.ICapabilityFactory" filter="(&amp;(capability=queue)(capability.model=junos))"/>
 	<reference id="connectionsCapabilityFactory" interface="org.opennaas.core.resources.capability.ICapabilityFactory" filter="(&amp;(capability=connections)(capability.model=proteus))"/>
 	<reference id="monitoringCapabilityFactory" interface="org.opennaas.core.resources.capability.ICapabilityFactory" filter="(&amp;(capability=monitoring)(capability.model=proteus))"/>
+	<reference id="xconnectCapabilityFactory" interface="org.opennaas.core.resources.capability.ICapabilityFactory" filter="(&amp;(capability=xconnect)(capability.model=proteus))"/>
     <bean id="resourceDescriptorRepository"
           class="org.opennaas.core.resources.descriptor.ResourceDescriptorRepository"
           init-method="initializeEntityManager" destroy-method="close">
@@ -26,6 +27,7 @@
 				<entry key="queue" value-ref="queueCapabilityFactory"/>
 				<entry key="connections" value-ref="connectionsCapabilityFactory"/>
 				<entry key="monitoring" value-ref="monitoringCapabilityFactory"/>
+				<entry key="xconnect" value-ref="xconnectCapabilityFactory"/>
 			</map>
 		</property>
 		<property name="resourceBootstrapperFactory" ref="roadmBootstrapperFactory"/>

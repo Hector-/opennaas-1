@@ -1,15 +1,22 @@
 package org.opennaas.extensions.roadm.capability.xconnect;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * @author Héctor Fernández
+ * @email  hbfernandezr@gmail.com
+ */
+
+@XmlRootElement
 public class XConnection {
 	
 	private String 				instanceID;
-	public String				srcEndPointId	= "";
-	public String				srcLabelId		= "";
-	public String				dstEndPointId	= "";
-	public String				dstLabelId		= "";	
+	private String				srcEndPointId	= "";
+	private String				srcLabelId		= "";
+	private String				dstEndPointId	= "";
+	private String				dstLabelId		= "";	
 	
-	public XConnection(){
-		setInstanceID(generateInstanceID());
+	public XConnection(){		
 	}
 	
 	public String getInstanceID() {
@@ -50,12 +57,5 @@ public class XConnection {
 
 	public void setDstLabelId(String dstLabelId) {
 		this.dstLabelId = dstLabelId;
-	}
-	
-	protected String generateInstanceID() {
-		String orgID = "opennaas.org"; 
-		String localID = this.getClass().getName() + "/" + this.toString();
-
-		return orgID + ":" + localID;
 	}
 }
