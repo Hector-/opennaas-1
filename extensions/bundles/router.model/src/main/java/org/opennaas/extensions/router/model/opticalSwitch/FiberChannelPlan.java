@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
@@ -16,11 +17,12 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * @author isart
  * 
  */
+
 @XmlSeeAlso({ WDMChannelPlan.class })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FiberChannelPlan {
 		
-	@XmlID
+	@XmlID	
 	private String	instanceID;	
 	
 	private int	firstChannel	= 0;
@@ -96,6 +98,8 @@ public class FiberChannelPlan {
 		for (int i = 0; i < numOfChannels; i++) {
 			FiberChannel channel = new FiberChannel();
 			// FIXME cannot distinguish between channels!!!
+			// channel.setNumChannel(i);
+			// channel.setInstanceID(getInstanceID() + "/" + channel.generateLocalID());
 			allChannels.add(channel);
 		}
 		return allChannels;

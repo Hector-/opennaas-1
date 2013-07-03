@@ -2,17 +2,29 @@ package org.opennaas.extensions.router.model.opticalSwitch;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DWDMChannel extends FiberChannel {
-
+public class DWDMChannel extends FiberChannel {	
+		
 	double	lambda;
+	
+	public DWDMChannel() {
+		super();
+	}
 
+	/**
+	 * Deprecated in lieu of getNumChannel
+	 * @return
+	 */
 	@Deprecated
 	public int getChannelNumber() {
 		return getNumChannel();
 	}
-
+	/**
+	 * Deprecated in lieu of setNumChannel
+	 * @param channelNumber
+	 */
 	@Deprecated
 	public void setChannelNumber(int channelNumber) {
 		setNumChannel(channelNumber);
@@ -49,5 +61,4 @@ public class DWDMChannel extends FiberChannel {
 			return false;
 		return true;
 	}
-
 }

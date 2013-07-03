@@ -18,7 +18,10 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({
 		DeviceSAPImplementation.class,
 		GRETunnelServiceConfiguration.class,
-		ServiceAccessBySAP.class
+		ServiceAccessBySAP.class,
+		HostedDependency.class,
+		SAPSAPDependency.class,
+		DeviceConnection.class
 })
 public class Dependency extends Association implements Serializable {
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WDMChannelPlan extends FiberChannelPlan {
@@ -21,18 +23,13 @@ public class WDMChannelPlan extends FiberChannelPlan {
 
 	private ITUGrid				ituGrid;
 
+	@XmlElement(name="fiberChannel")
+	@XmlIDREF
 	private List<FiberChannel>	channels;
 
 	public WDMChannelPlan() {
-		channelType = ChannelType.WDM;
-
 		// use all ITU Grid by default
-		ituGrid = new ITUGrid();
-		maxFreq = ITUGrid.getInitialFreq();
-		minFreq = ITUGrid.getFinalFreq();
-		guardInterval = ITUGrid.getGuardInterval();
-
-		channels = generateChannels();
+		this(ITUGrid.getInitialFreq(), ITUGrid.getFinalFreq(), ITUGrid.getGuardInterval(), new ITUGrid());
 	}
 
 	public WDMChannelPlan(double maxFreq, double minFreq, double guardInterval, ITUGrid ituGrid) {
@@ -216,6 +213,7 @@ public class WDMChannelPlan extends FiberChannelPlan {
 			DWDMChannel channel = new DWDMChannel();
 			channel.setChannelNumber(firstChannelNum + i * channelGap);
 			channel.setLambda(getLambda(channel.getChannelNumber()));
+			channel.setInstanceID(getInstanceID() + "/" + channel.generateLocalID());
 			allChannels.add(channel);
 		}
 		return allChannels;
