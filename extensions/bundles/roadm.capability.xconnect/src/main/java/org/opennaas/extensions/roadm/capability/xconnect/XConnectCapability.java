@@ -154,14 +154,15 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		log.info("Start of listXConnections call");		
 		results.clear();		
 				
-		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();			
+		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();
+		
+		results.add("XConnections list");
 		
 		for (FiberConnection connection : model.getFiberConnections()) {
 
 			XConnection xconnect = XConnectBridge.fiberconnectionToXConnection(connection);					
 			
-			results.add("Port " + xconnect.getSrcEndPointId() + " in " + connection.getSrcCard().getCardType().toString() + " using channel " + xconnect.getSrcLabelId() + " --> " +
-					"Port " + xconnect.getDstEndPointId() + " in " + connection.getDstCard().getCardType().toString() + " using channel " + xconnect.getDstLabelId());
+			results.add(xconnect.getInstanceID());
 		}					
 		
 		log.info("End of listXConnections call");
@@ -176,19 +177,16 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		
 		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();		
 		
+		results.add("EndPoints id's");
+		
 		for (LogicalDevice card : model.getLogicalDevices()) {
 			if (card instanceof ProteusOpticalSwitchCard) {
-
-				String cardType = ((ProteusOpticalSwitchCard) card).getCardType().toString();
+				
 				int chassis = ((ProteusOpticalSwitchCard) card).getChasis();
-				int slot = ((ProteusOpticalSwitchCard) card).getModuleNumber();
-
-				results.add("\t" + cardType + " card in chassis " + chassis + " and slot " + slot);
-
-				// ports
-				results.add("\t\tNumber of ports: " + ((ProteusOpticalSwitchCard) card).getModulePorts().size());
-				for (NetworkPort port : ((ProteusOpticalSwitchCard) card).getModulePorts()) {
-					results.add("\t\tPort " + port.getPortNumber() + " used in " + port.getPortsOnDevice().size() + " connections.");
+				int slot = ((ProteusOpticalSwitchCard) card).getModuleNumber();			
+				
+				for (NetworkPort port : ((ProteusOpticalSwitchCard) card).getModulePorts()) {					
+					results.add("\t " + XConnectBridge.getEPIdFromCardParameters(chassis, slot, port.getPortNumber()));
 				}
 			}
 		}														
@@ -205,43 +203,18 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		
 		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();	
 		
-		int cardParameters[] = XConnectBridge.getCardParameters(endPointID);
+		int cardParameters[] = XConnectBridge.getCardParametersFromEPId(endPointID);
 		
 		ProteusOpticalSwitchCard card = model.getCard(cardParameters[0], cardParameters[1]);				
 		
 		List<FiberChannel> allChannels = card.getChannelPlan().getAllChannels();
 
-		results.add("Port " + cardParameters[2] + " supports " + allChannels.size() + " channels");	
+		results.add("EndPoint " + endPointID + " supports " + allChannels.size() + " labels.");	
 
 		for (int i = 0; i < allChannels.size(); i++) {
 
-			FiberChannel channel = allChannels.get(i);
-			boolean inUse = false;
-
-			NetworkPort port = card.getPort(cardParameters[2]);
-			// look for current channel in port
-			for (int j = 0; j < ((FCPort) port).getPortsOnDevice().size() && !inUse; j++) {
-
-				LogicalPort subPort = ((FCPort) port).getPortsOnDevice().get(j);
-				if (subPort instanceof WDMFCPort) {
-					DWDMChannel subPortChannel = ((WDMFCPort) subPort).getDWDMChannel();
-					if (channel.getNumChannel() == subPortChannel.getNumChannel()) {
-						inUse = true;
-					}
-				}
-			}
-
-			// set channel info
-			String lambda = "-";
-			if (channel instanceof DWDMChannel) {
-				lambda = Double.toString(((DWDMChannel) channel).getLambda());
-			}
-			String inUseS = "-";
-			if (inUse) {
-				inUseS = "X";
-			}
-
-			results.add(Integer.toString(channel.getNumChannel()) + " - " + lambda + " - " + inUseS);					
+			FiberChannel channel = allChannels.get(i);														
+			results.add(Integer.toString(channel.getNumChannel()));					
 		}			
 		
 		log.info("End of listLabels call");			

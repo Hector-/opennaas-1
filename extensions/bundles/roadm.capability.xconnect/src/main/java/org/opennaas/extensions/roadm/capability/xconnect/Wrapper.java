@@ -13,30 +13,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @email  hbfernandezr@gmail.com
  */
 
-@XmlRootElement(name="List")
+@XmlRootElement(name="Result")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Wrapper {
 		
 	@XmlElement
-	protected List<String> results;
+	protected List<String> entry;
 	
 	public Wrapper(){
-		results = new ArrayList<String>();
+		entry = new ArrayList<String>();
 	}
 
 	public List<String> getResults() {
-		return this.results;
+		return this.entry;
 	}
 
 	public void setResults(List<String> results) {
-		this.results = results;
+		this.entry = results;
 	}	
 	
 	public void add(String s){ 
-		results.add(s);
+		entry.add(s);
 	}
 	
 	public void clear(){
-		results.clear();
+		entry.clear();
 	}
 }

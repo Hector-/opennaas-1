@@ -11,7 +11,7 @@ import org.opennaas.extensions.router.model.opticalSwitch.dwdm.proteus.cards.Pro
  * @email  hbfernandezr@gmail.com
  */
 
-public class XConnectBridge {
+public class XConnectBridge {	
 
 	public static FiberConnection xconnectionToFiberConnection(XConnection xconnection){
 		
@@ -96,7 +96,7 @@ public class XConnectBridge {
     
     public static XConnection xconnectionFromId(String id){
     	XConnection xconnect = new XConnection();
-		String[] srcDstIDs = id.split("::");
+		String[] srcDstIDs = id.split("::");		
 		
 		String[] srcIDs = srcDstIDs[0].split(":");
 		String[] dstIDs = srcDstIDs[1].split(":");
@@ -119,15 +119,18 @@ public class XConnectBridge {
     	return xconnect.getSrcEndPointId() + ":" + xconnect.getSrcLabelId() + "::" + xconnect.getDstEndPointId() + ":" + xconnect.getDstLabelId();
     }
     
-    public static int[] getCardParameters(String endPointID){    	 
+    public static int[] getCardParametersFromEPId(String endPointID){    	 
     	String[] temp = endPointID.split("-");
 		
     	int[] id = new int[3]; 
     	id[0] = Integer.parseInt(temp[0]);		
     	id[1] = Integer.parseInt(temp[1]);
-    	id[2] = Integer.parseInt(temp[2]);
-    	
+    	id[2] = Integer.parseInt(temp[2]);    	
     	
     	return id;
     }
+    
+    public static String getEPIdFromCardParameters(int chasis, int slot, int port){
+    	return Integer.toString(chasis) + "-" + Integer.toString(slot) + "-" + Integer.toString(port);
+    }    
 }
