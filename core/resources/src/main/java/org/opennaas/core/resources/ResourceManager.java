@@ -99,6 +99,43 @@ public class ResourceManager implements IResourceManager {
 			}
 		}
 	}
+	
+
+	/**
+	 * List all the existing resources of a given type. If type is null, returns an empty list.
+	 * 
+	 * @return The list of the resources contained on the given type repository. Is the type is not a valid type of repository it will return null
+	 *         value.
+	 */
+	@Override
+	public synchronized ResWrapper listResourcesByTypeAPI(String type) {
+		ResWrapper results = new ResWrapper();
+		
+		if (type == null) {
+			// return all resources
+			return results;
+		} else {
+			// return resources of a given type
+			IResourceRepository repo = resourceRepositories.get(type);
+			if (repo != null) {							
+				
+				for(IResource resource : repo.listResources()){
+					try {
+						results.add(getNameFromResourceID(resource.getResourceDescriptor().getId()));
+					} catch (ResourceException e) {
+						results.clear();
+						results.add("An error ocurred");
+						return results;
+					}
+				}				
+										
+				return results;				
+			} 
+			else {
+				return null;
+			}
+		}
+	}
 
 	/**
 	 * List all the existing resources
@@ -245,8 +282,16 @@ public class ResourceManager implements IResourceManager {
 	 * @return the available resource types
 	 */
 	@Override
-	public synchronized List<String> getResourceTypes() {
-		return new ArrayList<String>(resourceRepositories.keySet());
+	public synchronized ResWrapper getResourceTypes() {
+		
+		ResWrapper results = new ResWrapper();
+		
+		ArrayList<String> resourceTypes = new ArrayList<String>(resourceRepositories.keySet());
+		
+		for(String entry : resourceTypes)
+			results.add(entry);
+		
+		return results;
 	}
 
 	/**

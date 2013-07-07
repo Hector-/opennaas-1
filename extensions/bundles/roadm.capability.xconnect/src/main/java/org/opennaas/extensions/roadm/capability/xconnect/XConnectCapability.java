@@ -154,9 +154,7 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		log.info("Start of listXConnections call");		
 		results.clear();		
 				
-		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();
-		
-		results.add("XConnections list");
+		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();		
 		
 		for (FiberConnection connection : model.getFiberConnections()) {
 
@@ -175,9 +173,7 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		log.info("Start of listEndPoints call");
 		results.clear();
 		
-		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();		
-		
-		results.add("EndPoints id's");
+		ProteusOpticalSwitch model = (ProteusOpticalSwitch) resource.getModel();					
 		
 		for (LogicalDevice card : model.getLogicalDevices()) {
 			if (card instanceof ProteusOpticalSwitchCard) {
@@ -207,9 +203,7 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 		
 		ProteusOpticalSwitchCard card = model.getCard(cardParameters[0], cardParameters[1]);				
 		
-		List<FiberChannel> allChannels = card.getChannelPlan().getAllChannels();
-
-		results.add("EndPoint " + endPointID + " supports " + allChannels.size() + " labels.");	
+		List<FiberChannel> allChannels = card.getChannelPlan().getAllChannels();	
 
 		for (int i = 0; i < allChannels.size(); i++) {
 

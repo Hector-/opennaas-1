@@ -90,6 +90,17 @@ public interface IResourceManager {
 	 *         value.
 	 */
 	public List<IResource> listResourcesByType(@PathParam("type") String type);
+	
+	/**
+	 * List all the existing resources of a given type. If type is null, returns an empty list.
+	 * 
+	 * @return The list of the resources contained on the given type repository. Is the type is not a valid type of repository it will return null
+	 *         value.
+	 */
+	@GET
+	@Path("/listResourcesByType/{type}")
+	@Produces(MediaType.APPLICATION_XML)
+	public ResWrapper listResourcesByTypeAPI(@PathParam("type") String type);
 
 	/**
 	 * List all resources in container.
@@ -104,7 +115,7 @@ public interface IResourceManager {
 	@GET
 	@Path("/getResourceTypes")
 	@Produces(MediaType.APPLICATION_XML)
-	public List<String> getResourceTypes();
+	public ResWrapper getResourceTypes();
 
 	/**
 	 * Get an existing resource
