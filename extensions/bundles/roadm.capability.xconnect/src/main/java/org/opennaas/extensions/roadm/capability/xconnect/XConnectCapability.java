@@ -182,7 +182,7 @@ public class XConnectCapability extends AbstractCapability implements IXConnectC
 				int slot = ((ProteusOpticalSwitchCard) card).getModuleNumber();			
 				
 				for (NetworkPort port : ((ProteusOpticalSwitchCard) card).getModulePorts()) {					
-					results.add("\t " + XConnectBridge.getEPIdFromCardParameters(chassis, slot, port.getPortNumber()));
+					results.add(XConnectBridge.getEPIdFromCardParameters(chassis, slot, port.getPortNumber()));
 				}
 			}
 		}														
