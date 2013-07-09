@@ -320,6 +320,27 @@ public class ResourceManager implements IResourceManager {
 		}
 		return identifier;
 	}
+	
+	/**
+	 * Get the IdentifierInformation for a given name (Resource.Information.name) of resource
+	 * 
+	 * @return the ResourceIdentifier
+	 */
+	@Override
+	public String getIdentifierFromResourceTypeName(String resourceType, String resourceName) throws ResourceException {
+		return this.getIdentifierFromResourceName(resourceType, resourceName).getId();	
+	}
+	
+	
+	/**
+	 * Get the status for a given id (Resource.Information.id) of resource
+	 * 
+	 * @return the resource status
+	 */
+	@Override
+	public String getStatus(String resourceId) throws ResourceException {
+		return this.getResourceById(resourceId).getState().name();	
+	}
 
 	/**
 	 * Get the Name for a given resource ID (Resource.descriptor.id) of resource

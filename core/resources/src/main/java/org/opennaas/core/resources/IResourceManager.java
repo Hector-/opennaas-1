@@ -194,6 +194,18 @@ public interface IResourceManager {
 	 */
 	public IResourceIdentifier getIdentifierFromResourceName(String resourceType, String resourceName)
 			throws ResourceException;
+	
+	/**
+	 * 
+	 * @param resourceType
+	 * @param resourceName
+	 * @return the resource Id
+	 * @throws ResourceException
+	 */
+	@GET
+	@Path("/getId/{resourceType}/{resourceName}")
+	public String getIdentifierFromResourceTypeName(@PathParam("resourceType") String resourceType, @PathParam("resourceName") String resourceName)
+			throws ResourceException;
 
 	/**
 	 * 
@@ -205,6 +217,17 @@ public interface IResourceManager {
 	@Path("/getName/{resourceId}/")
 	public String getNameFromResourceID(@PathParam("resourceId") String resourceId) throws ResourceException;
 
+	/**
+	 * 
+	 * @param resourceType
+	 * @param resourceName
+	 * @return the resource status
+	 * @throws ResourceException
+	 */
+	@GET
+	@Path("/getStatus/{resourceId}")
+	public String getStatus(@PathParam("resourceId") String resourceId)	throws ResourceException;
+	
 	/**
 	 * 
 	 * @param resourceIdentifier
