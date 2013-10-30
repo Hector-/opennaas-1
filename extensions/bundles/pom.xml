@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>org.opennaas.extensions</artifactId>
 		<groupId>org.opennaas</groupId>
-		<version>0.21</version>
+		<version>0.24.1</version>
 	</parent>
 	<name>OpenNaaS :: Extensions :: Bundles</name>
 	<artifactId>org.opennaas.extensions.bundles</artifactId>
@@ -23,6 +23,7 @@
 	</dependencies>
 	<modules>
 		<module>router.actionsets.junos</module>
+		<module>router.actionsets.opener</module>
 		<module>router.repository</module>
 		<module>router.capability.chassis</module>
 		<module>router.capability.ip</module>
@@ -76,5 +77,12 @@
 		<module>power.capabilities</module>
 		
 		<module>sampleresource</module>
+		
+		<module>quantum</module>
+		
+		<module>ofertie.ncl</module>
+		<module>openflowswitch</module>
+		<module>openflowswitch.driver.floodlight</module>
+		<module>sdnnetwork</module>
 	</modules>
 </project>

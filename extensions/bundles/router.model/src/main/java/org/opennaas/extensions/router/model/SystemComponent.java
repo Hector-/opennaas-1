@@ -5,7 +5,7 @@
 
 package org.opennaas.extensions.router.model;
 
-import java.io.*;
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
